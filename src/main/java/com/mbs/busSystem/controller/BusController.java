@@ -1,17 +1,19 @@
 package com.mbs.busSystem.controller;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class BusController {
 
     @PostMapping
-    public String createBus(){
-        return "Bus Created";
+    public ResponseEntity <String> createBus(){
+        return ResponseEntity.status(HttpStatus.CREATED).body("Bus Created");
     }
     @GetMapping
-    public String getAllBus(){
-        return "All Bus Fetched";
+    public ResponseEntity <String> getAllBus(){
+        return ResponseEntity.status(HttpStatus.OK).body("All Bus Fetched");
     }
 
 //    @GetMapping
@@ -20,12 +22,12 @@ public class BusController {
 //    }
 
     @PutMapping
-    public String updateBusById(){
-        return "Bus Updated";
+    public ResponseEntity <String> updateBusById(){
+        return ResponseEntity.status(HttpStatus.OK).body("Bus Updated");
     }
 
     @DeleteMapping
-    public String deleteBusById(){
-        return "Bus Deleted";
+    public ResponseEntity <String> deleteBusById(){
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Bus Deleted");
     }
 }
