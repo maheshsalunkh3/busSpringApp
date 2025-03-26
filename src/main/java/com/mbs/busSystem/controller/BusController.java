@@ -1,5 +1,9 @@
 package com.mbs.busSystem.controller;
 
+import com.mbs.busSystem.services.CreateBusService;
+import com.mbs.busSystem.services.DeleteBusByIdService;
+import com.mbs.busSystem.services.GetAllBusService;
+import com.mbs.busSystem.services.UpdateBusByIdService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -7,13 +11,29 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class BusController {
 
+    private final CreateBusService createBusService;
+    private final GetAllBusService getAllBusService;
+    private final UpdateBusByIdService updateBusByIdService;
+    private final DeleteBusByIdService deleteBusByIdService;
+
+    public BusController(CreateBusService createBusService,
+                         GetAllBusService getAllBusService,
+                         UpdateBusByIdService updateBusByIdService,
+                         DeleteBusByIdService deleteBusByIdService) {
+        this.createBusService = createBusService;
+        this.getAllBusService = getAllBusService;
+        this.updateBusByIdService = updateBusByIdService;
+        this.deleteBusByIdService = deleteBusByIdService;
+    }
+
+
     @PostMapping
     public ResponseEntity <String> createBus(){
-        return ResponseEntity.status(HttpStatus.CREATED).body("Bus Created");
+        return createBusService.execute(null);
     }
     @GetMapping
     public ResponseEntity <String> getAllBus(){
-        return ResponseEntity.status(HttpStatus.OK).body("All Bus Fetched");
+        return getAllBusService.execute(null);
     }
 
 //    @GetMapping
@@ -23,11 +43,11 @@ public class BusController {
 
     @PutMapping
     public ResponseEntity <String> updateBusById(){
-        return ResponseEntity.status(HttpStatus.OK).body("Bus Updated");
+        return updateBusByIdService.execute(null);
     }
 
     @DeleteMapping
     public ResponseEntity <String> deleteBusById(){
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Bus Deleted");
+        return deleteBusByIdService.execute(null);
     }
 }
