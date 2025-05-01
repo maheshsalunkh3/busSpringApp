@@ -1,24 +1,17 @@
 package com.mbs.busSystem.model;
-import jakarta.persistence.*;
 import lombok.Data;
 
-@Entity
-@Table (name = "bus")
-public class Bus {
+public class BusDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column (name = "id")
     private Integer id;
-
-    @Column (name = "busName")
     private String busName;
 
-    public Bus() {
+    public BusDTO (Bus bus) {
+        this.id = bus.getId();
+        this.busName = bus.getBusName();
     }
 
-    public Bus(Integer id){
-
+    public BusDTO() {
     }
 
     public Integer getId() {
