@@ -1,7 +1,9 @@
 package com.mbs.busSystem.controller;
 
+import com.mbs.busSystem.exceptions.NotFoundException;
 import com.mbs.busSystem.model.Bus;
 import com.mbs.busSystem.model.BusDTO;
+import com.mbs.busSystem.model.ErrorResponse;
 import com.mbs.busSystem.model.UpdateBusCommand;
 import com.mbs.busSystem.services.*;
 import jakarta.persistence.Entity;
@@ -58,4 +60,5 @@ public class BusController {
     public ResponseEntity<Void> deleteBusById(@PathVariable Integer id){
         return deleteBusByIdService.execute(id);
     }
+
 }

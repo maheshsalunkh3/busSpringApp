@@ -2,6 +2,7 @@ package com.mbs.busSystem.services;
 
 import com.mbs.busSystem.BusRepository;
 import com.mbs.busSystem.Command;
+import com.mbs.busSystem.exceptions.NotFoundException;
 import com.mbs.busSystem.model.Bus;
 import com.mbs.busSystem.model.BusDTO;
 import com.mbs.busSystem.model.UpdateBusCommand;
@@ -33,6 +34,6 @@ public class UpdateBusByIdService implements Command<UpdateBusCommand, BusDTO> {
 
             return ResponseEntity.ok(new BusDTO(bus));
         }
-        return null;
+        throw new NotFoundException();
     }
 }

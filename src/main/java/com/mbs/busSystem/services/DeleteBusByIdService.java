@@ -2,6 +2,7 @@ package com.mbs.busSystem.services;
 
 import com.mbs.busSystem.BusRepository;
 import com.mbs.busSystem.Command;
+import com.mbs.busSystem.exceptions.NotFoundException;
 import com.mbs.busSystem.model.Bus;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +27,6 @@ public class DeleteBusByIdService implements Command <Integer, Void> {
             busRepository.deleteById(id);
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         }
-        return null;
+        throw new NotFoundException();
     }
 }

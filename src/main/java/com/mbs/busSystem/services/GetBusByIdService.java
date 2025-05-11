@@ -2,6 +2,7 @@ package com.mbs.busSystem.services;
 
 import com.mbs.busSystem.BusRepository;
 import com.mbs.busSystem.Command;
+import com.mbs.busSystem.exceptions.NotFoundException;
 import com.mbs.busSystem.model.Bus;
 import com.mbs.busSystem.model.BusDTO;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +28,6 @@ public class GetBusByIdService implements Command <Integer, BusDTO> {
         if (bus.isPresent()) {
             return ResponseEntity.ok(new BusDTO(bus.get()));
         }
-        return null;
+        throw new NotFoundException();
     }
 }
