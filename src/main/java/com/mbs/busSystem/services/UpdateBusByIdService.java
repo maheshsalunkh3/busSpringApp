@@ -6,6 +6,7 @@ import com.mbs.busSystem.exceptions.NotFoundException;
 import com.mbs.busSystem.model.Bus;
 import com.mbs.busSystem.model.BusDTO;
 import com.mbs.busSystem.model.UpdateBusCommand;
+import com.mbs.busSystem.validator.Validator;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,7 @@ public class UpdateBusByIdService implements Command<UpdateBusCommand, BusDTO> {
 
         Optional<Bus> busUpdated = busRepository.findById(busCommand.getId());
 
+        Validator.execute(busCommand.getBus());
         if (busUpdated.isPresent()){
             Bus bus = busCommand.getBus();
             bus.setId(busCommand.getId());
