@@ -22,18 +22,22 @@ public class BusController {
     private final UpdateBusByIdService updateBusByIdService;
     private final DeleteBusByIdService deleteBusByIdService;
 
-    private GetBusByIdService getBusByIdService;
+    private final GetBusByIdService getBusByIdService;
+    private final SearchBusService searchBusService;
 
     public BusController(CreateBusService createBusService,
                          GetAllBusService getAllBusService,
                          GetBusByIdService getBusByIdService,
                          UpdateBusByIdService updateBusByIdService,
-                         DeleteBusByIdService deleteBusByIdService) {
+                         DeleteBusByIdService deleteBusByIdService,
+                         SearchBusService searchBusService) {
         this.createBusService = createBusService;
         this.getAllBusService = getAllBusService;
         this.getBusByIdService = getBusByIdService;
         this.updateBusByIdService = updateBusByIdService;
         this.deleteBusByIdService = deleteBusByIdService;
+        this.searchBusService = searchBusService;
+
     }
 
 
@@ -49,6 +53,11 @@ public class BusController {
     @GetMapping("/bus/{id}")
     public ResponseEntity <BusDTO> getBusById(@PathVariable Integer id){
         return getBusByIdService.execute(id);
+    }
+
+    @GetMapping("/bus/search")
+    public ResponseEntity <List<BusDTO>> searchBusByName(@RequestParam String name) {
+        return searchBusService.execute(name);
     }
 
     @PutMapping("/bus/{id}")
