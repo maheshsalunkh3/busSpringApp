@@ -1,12 +1,13 @@
 package com.mbs.busSystem.model;
-import lombok.Data;
+
+import java.util.Objects;
 
 public class BusDTO {
 
     private Integer id;
     private String busName;
 
-    public BusDTO (Bus bus) {
+    public BusDTO(Bus bus) {
         this.id = bus.getId();
         this.busName = bus.getBusName();
     }
@@ -28,5 +29,19 @@ public class BusDTO {
 
     public void setBusName(String busName) {
         this.busName = busName;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof BusDTO)) return false;
+        BusDTO busDTO = (BusDTO) o;
+        return Objects.equals(id, busDTO.id) &&
+                Objects.equals(busName, busDTO.busName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, busName);
     }
 }
