@@ -21,6 +21,11 @@ public class Bus {
 
     }
 
+    public Bus(Integer id, String busName) {
+        this.id = id;
+        this.busName = busName;
+    }
+
     public Integer getId() {
         return id;
     }
